@@ -1,0 +1,64 @@
+ <!-- <!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>mystery-number</title>
+  <link rel="stylesheet" type="text/css" href="style.css">
+ 
+</head>
+<body>
+
+   <p>trouvez le numéro mystère (entre 1 et 10) :</p>
+  <input type="text" id="guessInput">
+  <button onclick="checkGuess()">Valider</button>
+
+  <img src="./img/mystery-number.png" alt="Mystery Number">
+
+<div id="result"></div>
+<div id="chance"></div>
+
+
+
+
+  <script src="script.js"></script>
+
+ 
+</body>
+ </html>  -->
+
+
+
+
+ <!DOCTYPE html>
+ <html lang="fr">
+ <head>
+   <meta charset="UTF-8">
+   <title>Jeu du numéro mystère</title>
+   <link rel="stylesheet" type="text/css" href="style.css">
+ </head>
+ <body>
+   <h1>Jeu du numéro mystère</h1>
+ 
+   <div class="container">
+     <div class="row">
+       <div class="col">
+         <input type="number" id="guessInput" placeholder="Entrer un chiffre">
+         <button id="guessButton">Valider</button>
+       </div>
+       <div class="col">
+         <div id="attemptsContainer">
+           <div class="attemptLine"></div>
+           <div class="attemptLine"></div>
+           <div class="attemptLine"></div>
+         </div>
+       </div>
+     </div>
+   </div>
+ 
+   <div id="result"></div>
+   <div id="chances"></div>
+ 
+   <script src="script.js"></script>
+ </body>
+ </html>
+ 
