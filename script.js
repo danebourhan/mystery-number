@@ -1,78 +1,59 @@
-// var secretNumber = 7; // Le numéro mystère à deviner
-// var chancesLeft = 3; // Le nombre de chances restantes
+const result = document.getElementById("result");
+const btn = document.getElementById("btn");
+const replayBtn = document.getElementById("replayBtn");
+let number = Math.floor(Math.random() * 10) + 1;
+let attempts = 0;
+let timeoutId;
 
-// function checkGuess() {
-//   var guess = parseInt(document.getElementById("guessInput").value);
-//   var resultElement = document.getElementById("result");
-//   var chancesElement = document.getElementById("chances");
+console.log(number);
 
-//   if (guess === secretNumber) {
-//     resultElement.innerHTML = "Félicitations ! Vous avez deviné le numéro mystère !";
-//     chancesElement.innerHTML = "";
-//   } else {
-//     chancesLeft--;
-//     if (chancesLeft > 0) {
-//       var hint = "";
-//       if (guess < secretNumber) {
-//         hint = "Le numéro mystère est plus grand.";
-//       } else {
-//         hint = "Le numéro mystère est plus petit.";
-//       }
-//       resultElement.innerHTML = "Désolé, ce n'est pas le numéro mystère. " + hint + " Essayez encore !";
-//       chancesElement.innerHTML = "Il vous reste " + chancesLeft + " chance(s).";
-//       document.getElementById("guessInput").value = "";
-//     } else {
-//       resultElement.innerHTML = "Désolé, vous avez épuisé toutes vos chances. Le numéro mystère était " + secretNumber + ".";
-//       chancesElement.innerHTML = "";
-//       document.getElementById("guessInput").disabled = true;
-//     }
-//   }
-// }
+function numberTest() {
+  const userInput = parseInt(document.getElementById("userInput").value);
+  let output = "";
+  attempts++;
+  let attemptText = attempts === 1 ? "1er essai" : `${attempts}ème essai`;
+  clearTimeout(timeoutId);
 
-
-var secretNumber;
-var attempts = 0;
-
-function generateSecretNumber() {
-  secretNumber = Math.floor(Math.random() * 10) + 1;
-}
-
-function checkGuess() {
-  var guess = parseInt(document.getElementById("guessInput").value);
-  var resultElement = document.getElementById("result");
-  var chancesElement = document.getElementById("chances");
-
-  if (guess === secretNumber) {
-    resultElement.textContent = "Félicitations ! Vous avez deviné le numéro mystère !";
-    resetGame();
-  } else {
-    attempts++;
-    var hint = guess < secretNumber ? "Le numéro mystère est plus grand." : "Le numéro mystère est plus petit.";
-    resultElement.textContent = "Désolé, ce n'est pas le numéro mystère. " + hint + " Essayez encore !";
-
-    if (attempts === 1) {
-      document.getElementById("attemptLine1").style.backgroundColor = "#000";
-    } else if (attempts === 2) {
-      document.getElementById("attemptLine2").style.backgroundColor = "#000";
-    } else if (attempts >= 3) {
-      document.getElementById("attemptLine3").style.backgroundColor = "#000";
-      resultElement.textContent = "Désolé, vous avez épuisé toutes vos chances. Le numéro mystère était " + secretNumber + ".";
-      resetGame();
-    }
+  if (isNaN(userInput) || userInput < 1 || userInput > 10) {
+    output = "<hr><h5>Veuillez saisir un nombre valide entre 1 et 10.</h5>";
+    result.innerHTML += output;
+    btn.disabled = true;
+    replayBtn.classList.remove("d-none");
+    return; // Sortie de la fonction si la saisie n'est pas valide
   }
 
-  document.getElementById("guessInput").value = "";
+  if (userInput === number) {
+    timeoutId = setTimeout(function () {
+      output = `<p><h4>Gagné ! 🙂</h4> <br> Le numéro mystère était : ${number}</p>`;
+      replayBtn.classList.remove("d-none");
+      btn.disabled = true;
+    }, 1000);
+  } else if (userInput > number) {
+    output = `<p>${userInput} ? ... c'est ➖</p>`;
+  } else {
+    output = `<p>${userInput} ? ... c'est ➕</p>`;
+  }
+
+  result.innerHTML += `<hr><p><h5>${attemptText}</h5></p><br>`;
+  timeoutId = setTimeout(function () {
+    result.innerHTML += output;
+  }, 1000);
+
+  if ((attempts >= 3 && userInput !== number) || attempts >= 3) {
+    timeoutId = setTimeout(function () {
+      result.innerHTML += `<p><h4>Perdu...☹️</h4></p><p>Le numéro mystère était : ${number}</p>`;
+      btn.disabled = true;
+      replayBtn.classList.remove("d-none");
+    }, 1000);
+  }
+
+  if (attempts >= 3) {
+    btn.disabled = true;
+  }
 }
 
-function resetGame() {
-  attempts = 0;
-  document.getElementById("result").textContent = "";
-  document.getElementById("chances").textContent = "";
-  document.getElementById("attemptLine1").style.backgroundColor = "transparent";
-  document.getElementById("attemptLine2").style.backgroundColor = "transparent";
-  document.getElementById("attemptLine3").style.backgroundColor = "transparent";
-  generateSecretNumber();
-}
+replayBtn.addEventListener("click", function () {
+  location.reload();
+});
 
-generateSecretNumber();
-document.getElementById("guessButton").addEventListener("click", checkGuess);
+btn.addEventListener("click", numberTest); 

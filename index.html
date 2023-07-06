@@ -1,64 +1,68 @@
- <!-- <!DOCTYPE html>
-<html lang="fr">
-<head>
-  <meta charset="UTF-8">
-  <title>mystery-number</title>
-  <link rel="stylesheet" type="text/css" href="style.css">
- 
-</head>
-<body>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Mystery number</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM"
+      crossorigin="anonymous"
+    />
+  </head>
+  <body>
+    <div
+      class="container-fluid vh-100 d-flex justify-content-center align-items-center"
+    >
+      <form>
+        <div class="row justify-content-center">
+          <div class="col-auto mb-3">
+            <div class="d-flex align-items-center">
+              <div class="col-5 me-2">
+                <input
+                  type="number"
+                  class="form-control"
+                  placeholder="Entrer un chiffre"
+                  id="userInput"
+                  min="1"
+                  max="10"
+                />
+              </div>
+              <div class="col-auto me-2">
+                <button type="button" class="btn btn-dark rounded-end" id="btn">
+                  Tester
+                </button>
+              </div>
+              <div class="col">
+                <div class="card text-center" style="width: 18rem">
+                  <div class="card-body">
+                    <p class="card-text">
+                      Trouvez le numéro mystère (entre 1 et 10)
+                    </p>
 
-   <p>trouvez le numéro mystère (entre 1 et 10) :</p>
-  <input type="text" id="guessInput">
-  <button onclick="checkGuess()">Valider</button>
+                    <div id="result"></div>
+                    <button
+                      type="button"
+                      class="btn btn-primary d-none"
+                      id="replayBtn"
+                    >
+                      Rejouer
+</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
 
-  <img src="./img/mystery-number.png" alt="Mystery Number">
-
-<div id="result"></div>
-<div id="chance"></div>
-
-
-
-
-  <script src="script.js"></script>
-
- 
-</body>
- </html>  -->
-
-
-
-
- <!DOCTYPE html>
- <html lang="fr">
- <head>
-   <meta charset="UTF-8">
-   <title>Jeu du numéro mystère</title>
-   <link rel="stylesheet" type="text/css" href="style.css">
- </head>
- <body>
-   <h1>Jeu du numéro mystère</h1>
- 
-   <div class="container">
-     <div class="row">
-       <div class="col">
-         <input type="number" id="guessInput" placeholder="Entrer un chiffre">
-         <button id="guessButton">Valider</button>
-       </div>
-       <div class="col">
-         <div id="attemptsContainer">
-           <div class="attemptLine"></div>
-           <div class="attemptLine"></div>
-           <div class="attemptLine"></div>
-         </div>
-       </div>
-     </div>
-   </div>
- 
-   <div id="result"></div>
-   <div id="chances"></div>
- 
-   <script src="script.js"></script>
- </body>
- </html>
- 
+    <script src="script.js"></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>
